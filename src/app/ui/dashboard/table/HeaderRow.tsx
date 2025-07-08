@@ -7,11 +7,7 @@ import {
   Button,
 } from "@ui5/webcomponents-react";
 
-interface HeaderRowProps {
-  handleStatus: (status: string) => void;
-  handleOrder: () => void;
-  orderStart: boolean;
-}
+import { HeaderRowProps } from '@/app/lib/definitions';
 
 export default function HeaderRow({ handleStatus, handleOrder, orderStart }: HeaderRowProps) {
   return (
@@ -37,7 +33,7 @@ export default function HeaderRow({ handleStatus, handleOrder, orderStart }: Hea
       </TableHeaderCell>
       <TableHeaderCell className="flex flex-col gap-2">
         <span className="mx-auto text-center">Status</span>
-        <Select onChange={({ target }) => handleStatus(target.value)}>
+        <Select onChange={({ target }) => handleStatus(target.value)} className='text-center'>
           <Option value={"none"} selected>
             None
           </Option>

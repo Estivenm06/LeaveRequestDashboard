@@ -1,12 +1,5 @@
-import { getData } from "./lib/data";
-import TableDashboard from "./ui/dashboard/table/TableDashboard";
+import { Home } from "@/components/home";
 
 export default async function Page() {
-  const employees = (await getData()) || [];
-
-  return (
-    <div className="container mx-auto p-5">
-      <TableDashboard employees={employees} />
-    </div>
-  );
+  return <Home />;
 }

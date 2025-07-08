@@ -1,7 +1,8 @@
-import '@ui5/webcomponents-react/dist/Assets';
 import { ThemeProvider } from "@ui5/webcomponents-react";
+
 import "./globals.css";
 import { inter } from "./ui/fonts";
+import { Sidebar } from "@/components/common/Sidebar";
 
 export const metadata = {
   title: "Leave Request Dashboard",
@@ -14,11 +15,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter}`}>
-        <h1 className='text-2xl text-center mx-auto p-5 bg-gray-500 text-white font-bold'>Leave Request Dashboard</h1>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
-    </html>
+    <ThemeProvider>
+      <html lang="en">
+        <body className={`${inter.className} md:flex items-center`}>
+          <Sidebar />
+          {children}
+        </body>
+      </html>
+    </ThemeProvider>
   );
 }

@@ -5,7 +5,7 @@ import { describe, it, expect, vi } from "vitest";
 import { fireEvent, screen } from "@testing-library/react";
 
 import TableDashboard from "../ui/dashboard/table/TableDashboard";
-import Row from "../ui/dashboard/table/Row";
+import Row from "../ui/dashboard/table/BodyRow";
 
 const mockData = [
   {

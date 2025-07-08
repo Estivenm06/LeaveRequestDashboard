@@ -1,19 +1,14 @@
 "use client";
-import React from 'react';
-import { TableRow, TableCell, Button } from "@ui5/webcomponents-react";
-import { format } from "date-fns";
+import React from "react";
+import { TableRow, TableCell, Button, Dialog } from "@ui5/webcomponents-react";
 
-import { Employee } from "@/app/lib/definitions";
+import { dateFormat } from "../../../../utils/helper";
+import { RowsProps } from "@/app/lib/definitions";
 
-interface RowProps {
-  employee: Employee;
-  handleUpdateStatusEmployee: ({ id }: { id: string }) => void;
-}
-
-export default function Row({
+export default function BodyRow({
   handleUpdateStatusEmployee,
-  employee,
-}: RowProps) {
+  employees,
+}: RowsProps) {
   const styleRejected = "bg-red-500 hover:bg-red-600";
   const stylePending = "bg-yellow-500 hover:bg-yellow-600";
   const styleApproved = "bg-green-500 hover:bg-green-600";
@@ -31,11 +26,7 @@ export default function Row({
     }
   };
 
-  const dateFormat = (dateEmployee: string) => {
-    return format(new Date(dateEmployee), "MM/dd/yyyy");
-  };
-
-  return (
+  return employees.map((employee) => (
     <TableRow className="hover:bg-gray-100 transition-colors duration-200 p-5 grid grid-cols-6">
       <TableCell>
         <span className="mx-auto">{employee.name}</span>
@@ -50,7 +41,11 @@ export default function Row({
         <span className="mx-auto">{dateFormat(employee.date_to)}</span>
       </TableCell>
       <TableCell>
-        <span className="mx-auto">{employee.reason}</span>
+        <span className="mx-auto">
+          {employee.reason.length > 20
+            ? employee.reason.substring(0, 20) + "..."
+            : employee.reason}
+        </span>
       </TableCell>
       <TableCell>
         <Button
@@ -66,5 +61,5 @@ export default function Row({
         </Button>
       </TableCell>
     </TableRow>
-  );
+  ));
 }

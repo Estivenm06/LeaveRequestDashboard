@@ -1,30 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
+import { TableDashboardProps } from "@/app/lib/definitions";
 import { Table } from "@ui5/webcomponents-react";
 import { Employee } from "@/app/lib/definitions";
 
 import Pagination from "./Pagination";
 import HeaderRow from "./HeaderRow";
-import Row from "./Row";
-
-interface TableDashboardProps {
-  employees: Employee[];
-}
-
-interface RowsProps {
-  employees: Employee[];
-  handleUpdateStatusEmployee: ({ id }: { id: string }) => void;
-}
-
-function CreateRows({
-  employees,
-  handleUpdateStatusEmployee,
-}: RowsProps) {
-  return employees.map((employee) => (
-    <Row key={employee.id} employee={employee} handleUpdateStatusEmployee={handleUpdateStatusEmployee} />
-  ));
-}
+import BodyRow from "./BodyRow";
 
 export default function TableDashboard({ employees }: TableDashboardProps) {
   const [employeesLocally, setEmployees] = useState<Employee[]>(employees);
@@ -40,12 +23,11 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
   }, []);
 
   const handleClick = (pageNumber: number) => setPage(pageNumber);
+  const handleOrders = () => setOrderStart((prev) => !prev);
   const handleStatus = (status: string) => {
     setStatusFilter(status);
     setPage(1);
   };
-
-  const handleOrders = () => setOrderStart((prev) => !prev);
 
   const handleUpdateStatusEmployee = ({ id }: { id: string }) => {
     setEmployees((prev) => {
@@ -67,59 +49,25 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
     });
   };
 
-  const filterOrderStartDate = () => {
-    if (orderStart) {
-      return CreateRows({
-        employees: employeesLocally.sort(
-          (a, b) =>
-            new Date(a.date_from).getTime() - new Date(b.date_from).getTime()
-        ),
-        handleUpdateStatusEmployee,
-      });
-    } else {
-      return CreateRows({
-        employees: employeesLocally.sort(
-          (a, b) =>
-            new Date(b.date_from).getTime() - new Date(a.date_from).getTime()
-        ),
-        handleUpdateStatusEmployee,
-      });
-    }
-  };
-
   const filteredEmployees = () => {
-    let filtered;
-    if (statusFilter === "approved") {
-      filtered = CreateRows({
-        employees: employeesLocally.filter(
-          (employee) =>
-            employee.status.toLowerCase() === "approved" &&
-            filterOrderStartDate()
-        ),
-        handleUpdateStatusEmployee,
-      });
-    } else if (statusFilter === "pending") {
-      filtered = CreateRows({
-        employees: employeesLocally.filter(
-          (employee) =>
-            employee.status.toLowerCase() === "pending" &&
-            filterOrderStartDate()
-        ),
-        handleUpdateStatusEmployee,
-      });
-    } else if (statusFilter === "rejected") {
-      filtered = CreateRows({
-        employees: employeesLocally.filter(
-          (employee) =>
-            employee.status.toLowerCase() === "rejected" &&
-            filterOrderStartDate()
-        ),
-        handleUpdateStatusEmployee,
-      });
-    } else {
-      filtered = filterOrderStartDate();
-    }
-    return filtered;
+    const statusCondition = (employee: Employee) => {
+      if (statusFilter === "approved") {
+        return employee.status.toLowerCase() === "approved";
+      } else if (statusFilter === "pending") {
+        return employee.status.toLowerCase() === "pending";
+      } else if (statusFilter === "rejected") {
+        return employee.status.toLowerCase() === "rejected";
+      }
+      return true;
+    };
+
+    let filtered = employeesLocally.filter(statusCondition);
+    const ordered = filtered.sort((a, b) => {
+      return orderStart
+       ? new Date(a.date_from).getTime() - new Date(b.date_from).getTime()
+       : new Date(b.date_from).getTime() - new Date(a.date_from).getTime()
+    })
+    return BodyRow({employees: ordered, handleUpdateStatusEmployee});
   };
 
   const rows = filteredEmployees();
@@ -131,7 +79,7 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
   let paginatedRows = rows.slice(startIndex, endIndex);
 
   return (
-    <>
+    <main className="w-[70%] mx-auto h-[90vh] overflow-auto">
       <Table
         headerRow={
           <HeaderRow
@@ -140,7 +88,9 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
             orderStart={orderStart}
           />
         }
-        className="shadow-lg rounded-lg"
+        className="shadow-lg rounded-lg h-[80vh] mx-auto overflow-auto"
+        overflowMode="Scroll"
+        
       >
         {paginatedRows}
       </Table>
@@ -149,6 +99,6 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
         handleClick={handleClick}
         currentPage={page}
       />
-    </>
+    </main>
   );
 }
