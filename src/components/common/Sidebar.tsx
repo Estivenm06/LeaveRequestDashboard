@@ -1,4 +1,5 @@
 'use client';
+import "@ui5/webcomponents-icons/dist/AllIcons";
 import "@ui5/webcomponents-icons/dist/home";
 import "@ui5/webcomponents-icons/dist/request";
 import Link from "next/link";
