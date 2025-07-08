@@ -5,7 +5,7 @@ import { describe, it, expect, vi } from "vitest";
 import { fireEvent, screen } from "@testing-library/react";
 
 import TableDashboard from "../ui/dashboard/table/TableDashboard";
-import Row from "../ui/dashboard/table/BodyRow";
+import BodyRow from "../ui/dashboard/table/BodyRow";
 
 const mockData = [
   {
@@ -59,7 +59,7 @@ const mockData = [
 
 describe("<TableDashboard />", () => {
   it("Render and testing the filtering logic", () => {
-    render(<TableDashboard employees={mockData} />);
+    render(<TableDashboard employees={mockData} loading={false} />);
 
     const button = screen.getByText("Ascending");
     fireEvent.click(button);
@@ -67,17 +67,17 @@ describe("<TableDashboard />", () => {
   });
 });
 
-describe("<Row />", () => {
+describe("<BodyRow />", () => {
   it("Render and behavior approved and rejected", () => {
     const handle = vi.fn();
-    render(<Row handleUpdateStatusEmployee={handle} employee={mockData[0]} />);
-    const button = screen.getByText("REJECTED");
-    fireEvent.click(button);
+    render(<BodyRow handleUpdateStatusEmployee={handle} employees={mockData} />);
+    const buttons = screen.getAllByText("REJECTED");
+    fireEvent.click(buttons[0]);
     expect(handle).toHaveBeenCalledTimes(1);
   });
   it("Testing my Reusable Component", () => {
     const handle = vi.fn();
-    render(<Row handleUpdateStatusEmployee={handle} employee={mockData[0]} />);
+    render(<BodyRow handleUpdateStatusEmployee={handle} employees={mockData} />);
     expect(screen.getByText(mockData[0].name)).toBeDefined();
   });
 });

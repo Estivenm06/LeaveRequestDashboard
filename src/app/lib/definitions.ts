@@ -11,6 +11,7 @@ export type Employee = {
 
 export interface TableDashboardProps {
   employees: Employee[];
+  loading: boolean;
 }
 
 export interface RowsProps {

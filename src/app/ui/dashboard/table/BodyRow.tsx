@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { TableRow, TableCell, Button, Dialog } from "@ui5/webcomponents-react";
 
 import { dateFormat } from "../../../../utils/helper";
 import { RowsProps } from "@/app/lib/definitions";
+import { IconBtn } from "./IconBtn";
 
 export default function BodyRow({
   handleUpdateStatusEmployee,
@@ -26,8 +27,28 @@ export default function BodyRow({
     }
   };
 
+  const [openDialogForEmployee, setOpenDialogForEmployee] = useState<{
+    [id: string]: boolean;
+  }>({});
+
+  const handleOpenDialog = (employeeId: string) => {
+    setOpenDialogForEmployee((prev) => ({
+      ...prev,
+      [employeeId]: true,
+    }));
+  };
+  const handleCloseDialog = (employeeId: string) => {
+    setOpenDialogForEmployee((prev) => ({
+      ...prev,
+      [employeeId]: false,
+    }));
+  };
+
   return employees.map((employee) => (
-    <TableRow className="hover:bg-gray-100 transition-colors duration-200 p-5 grid grid-cols-6">
+    <TableRow
+      key={employee.id}
+      className="hover:bg-gray-100 transition-colors md:p-1.5 duration-200 grid grid-cols-6 p-5"
+    >
       <TableCell>
         <span className="mx-auto">{employee.name}</span>
       </TableCell>
@@ -40,12 +61,27 @@ export default function BodyRow({
       <TableCell>
         <span className="mx-auto">{dateFormat(employee.date_to)}</span>
       </TableCell>
-      <TableCell>
-        <span className="mx-auto">
+      <TableCell className="cell-dialog">
+        <span
+          className="mx-auto cursor-pointer"
+          onClick={() => handleOpenDialog(employee.id)}
+        >
           {employee.reason.length > 20
             ? employee.reason.substring(0, 20) + "..."
             : employee.reason}
         </span>
+        <Dialog
+          headerText={`Reason for ${employee.name}`}
+          open={openDialogForEmployee[employee.id] || false}
+          onClose={() => handleCloseDialog(employee.id)}
+        >
+          <span className="p-1">{employee.reason}</span>{" "}
+          <div slot="footer" className="p-1">
+            <Button onClick={() => handleCloseDialog(employee.id)}>
+              Close
+            </Button>
+          </div>
+        </Dialog>
       </TableCell>
       <TableCell>
         <Button
@@ -57,7 +93,10 @@ export default function BodyRow({
             employee.status
           )} mx-auto select-none text-white p-2 shrink-0 shadow-md`}
         >
-          {employee.status.toUpperCase()}
+          <>
+            <IconBtn status={employee.status} />
+            {employee.status.toUpperCase()}
+          </>
         </Button>
       </TableCell>
     </TableRow>
