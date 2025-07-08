@@ -1,9 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Pagination from "./Pagination";
+
 import { Table } from "@ui5/webcomponents-react";
-import HeaderRow from "./HeaderRow";
 import { Employee } from "@/app/lib/definitions";
+
+import Pagination from "./Pagination";
+import HeaderRow from "./HeaderRow";
 import CreateRows from "./CreateRows";
 
 interface TableDashboardProps {
