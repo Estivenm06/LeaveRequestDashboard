@@ -1,3 +1,4 @@
+import React from 'react';
 import { Employee } from "@/app/lib/definitions";
 import Row from "./Row";
 
@@ -6,7 +7,7 @@ interface RowsProps {
   handleUpdateStatusEmployee: ({ id }: { id: string }) => void;
 }
 
-export default function createRows({
+export default function CreateRows({
   employees,
   handleUpdateStatusEmployee,
 }: RowsProps) {

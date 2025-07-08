@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   TableHeaderRow,
   TableHeaderCell,
@@ -8,13 +9,11 @@ import {
 
 interface HeaderRowProps {
   handleStatus: (status: string) => void;
-  handleOrder: () => {
-    orderStart: boolean;
-    handleOrderStart: () => void;
-  };
+  handleOrder: () => void;
+  orderStart: boolean;
 }
 
-export default function HeaderRow({ handleStatus, handleOrder }: HeaderRowProps) {
+export default function HeaderRow({ handleStatus, handleOrder, orderStart }: HeaderRowProps) {
   return (
     <TableHeaderRow
       sticky
@@ -28,7 +27,7 @@ export default function HeaderRow({ handleStatus, handleOrder }: HeaderRowProps)
       </TableHeaderCell>
       <TableHeaderCell className="grid grid-rows-2">
         <span className="mx-auto text-center">Start Date</span>
-        <Button onClick={() => handleOrder().handleOrderStart()} className="bg-blue-500 text-white font-normal hover:bg-blue-700 shadow-md">{handleOrder().orderStart ? 'Ascending' : 'Descending'}</Button>
+        <Button onClick={() => handleOrder()} className="bg-blue-500 text-white font-normal hover:bg-blue-700 shadow-md">{orderStart ? 'Ascending' : 'Descending'}</Button>
       </TableHeaderCell>
       <TableHeaderCell>
         <span className="mx-auto text-center">End Date</span>

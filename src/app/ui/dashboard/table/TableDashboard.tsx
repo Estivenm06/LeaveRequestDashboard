@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import { Table } from "@ui5/webcomponents-react";
 import HeaderRow from "./HeaderRow";
 import { Employee } from "@/app/lib/definitions";
-import createRows from "./createRows";
+import CreateRows from "./CreateRows";
 
 interface TableDashboardProps {
   employees: Employee[];
@@ -29,12 +29,7 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
     setPage(1);
   };
 
-  const handleOrders = () => {
-    return {
-      orderStart,
-      handleOrderStart: () => setOrderStart((prev) => !prev),
-    };
-  };
+  const handleOrders = () => setOrderStart((prev) => !prev);
 
   const handleUpdateStatusEmployee = ({ id }: { id: string }) => {
     setEmployees((prev) => {
@@ -58,7 +53,7 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
 
   const filterOrderStartDate = () => {
     if (orderStart) {
-      return createRows({
+      return CreateRows({
         employees: employeesLocally.sort(
           (a, b) =>
             new Date(a.date_from).getTime() - new Date(b.date_from).getTime()
@@ -66,7 +61,7 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
         handleUpdateStatusEmployee,
       });
     } else {
-      return createRows({
+      return CreateRows({
         employees: employeesLocally.sort(
           (a, b) =>
             new Date(b.date_from).getTime() - new Date(a.date_from).getTime()
@@ -79,7 +74,7 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
   const filteredEmployees = () => {
     let filtered;
     if (statusFilter === "approved") {
-      filtered = createRows({
+      filtered = CreateRows({
         employees: employeesLocally.filter(
           (employee) =>
             employee.status.toLowerCase() === "approved" &&
@@ -88,7 +83,7 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
         handleUpdateStatusEmployee,
       });
     } else if (statusFilter === "pending") {
-      filtered = createRows({
+      filtered = CreateRows({
         employees: employeesLocally.filter(
           (employee) =>
             employee.status.toLowerCase() === "pending" &&
@@ -97,7 +92,7 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
         handleUpdateStatusEmployee,
       });
     } else if (statusFilter === "rejected") {
-      filtered = createRows({
+      filtered = CreateRows({
         employees: employeesLocally.filter(
           (employee) =>
             employee.status.toLowerCase() === "rejected" &&
@@ -123,7 +118,11 @@ export default function TableDashboard({ employees }: TableDashboardProps) {
     <>
       <Table
         headerRow={
-          <HeaderRow handleStatus={handleStatus} handleOrder={handleOrders} />
+          <HeaderRow
+            handleStatus={handleStatus}
+            handleOrder={handleOrders}
+            orderStart={orderStart}
+          />
         }
         className="shadow-lg rounded-lg"
       >
