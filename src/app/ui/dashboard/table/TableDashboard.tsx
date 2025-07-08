@@ -6,10 +6,24 @@ import { Employee } from "@/app/lib/definitions";
 
 import Pagination from "./Pagination";
 import HeaderRow from "./HeaderRow";
-import CreateRows from "./CreateRows";
+import Row from "./Row";
 
 interface TableDashboardProps {
   employees: Employee[];
+}
+
+interface RowsProps {
+  employees: Employee[];
+  handleUpdateStatusEmployee: ({ id }: { id: string }) => void;
+}
+
+function CreateRows({
+  employees,
+  handleUpdateStatusEmployee,
+}: RowsProps) {
+  return employees.map((employee) => (
+    <Row key={employee.id} employee={employee} handleUpdateStatusEmployee={handleUpdateStatusEmployee} />
+  ));
 }
 
 export default function TableDashboard({ employees }: TableDashboardProps) {
