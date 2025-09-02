@@ -2,36 +2,26 @@ import React from 'react';
 
 import { Icon } from "@ui5/webcomponents-react";
 import "@ui5/webcomponents-icons/dist/AllIcons.js";
-import "@ui5/webcomponents-icons/dist/decline";
-import "@ui5/webcomponents-icons/dist/pending";
-import "@ui5/webcomponents-icons/dist/verified";
+import "@ui5/webcomponents-icons/dist/message-error";
+import "@ui5/webcomponents-icons/dist/in-progress";
+import "@ui5/webcomponents-icons/dist/sys-enter";
 
 const IconBtn = ({ status }: { status: string }) => {
-  switch (status) {
-    case "APPROVED":
-      return (
-        <Icon
-          name="verified"
-          className="text-white mx-auto align-middle mr-0.5"
-        />
-      );
-    case "REJECTED":
-      return (
-        <Icon
-          name="decline"
-          className="text-white mx-auto align-middle mr-0.5"
-        />
-      );
-    case "PENDING":
-      return (
-        <Icon
-          name="pending"
-          className="text-white mx-auto align-middle mr-0.5"
-        />
-      );
-    default:
-      break;
+  let styleIcon = "";
+  let name = "";
+  if(status === 'APPROVED'){
+    name = "sys-enter"
+    styleIcon = "text-green-800";
+  }else if(status === 'REJECTED'){
+    name = "message-error"
+    styleIcon = "text-red-800";
+  }else if(status === 'PENDING'){
+    name = "in-progress"
+    styleIcon = "text-yellow-800";
+  }else {
+    styleIcon = "text-white";
   }
+  return <Icon name={name} className={`${styleIcon} w-3 h-3`} />
 };
 
 export { IconBtn };

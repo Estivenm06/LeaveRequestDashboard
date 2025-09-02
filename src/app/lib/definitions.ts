@@ -9,11 +9,6 @@ export type Employee = {
   createdAt: string;
 };
 
-export interface TableDashboardProps {
-  employees: Employee[];
-  loading: boolean;
-}
-
 export interface RowsProps {
   handleUpdateStatusEmployee: ({ id }: { id: string }) => void;
   employees: Employee[];
@@ -21,7 +16,7 @@ export interface RowsProps {
 
 export interface HeaderRowProps {
   handleStatus: (status: string) => void;
-  handleOrder: () => void;
+  handleOrder: (order: boolean) => void;
   orderStart: boolean;
 }
 

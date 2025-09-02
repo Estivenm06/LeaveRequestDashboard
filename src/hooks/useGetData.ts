@@ -6,15 +6,21 @@ import { Employee } from "@/app/lib/definitions";
 
 const useGetData = () => {
   const [data, setData] = useState<Employee[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<null | string>(null);
   const databaseURL = DATABASE_URL();
 
   useEffect(() => {
     (async () => {
+      const employeesLocal = localStorage.getItem('employeesLocal');
+      if(employeesLocal){
+        setData(JSON.parse(employeesLocal));
+        setLoading(false);
+        return;
+      }
+
       await fetch(databaseURL)
         .then(async (response) => {
-          setLoading(true);
           if (response.ok) {
             const data: Employee[] = await response.json();
             setData(data);
@@ -27,7 +33,7 @@ const useGetData = () => {
         });
       setLoading(false);
     })();
-  }, []);
+  }, [  ]);
   return { data, loading, error };
 };
 

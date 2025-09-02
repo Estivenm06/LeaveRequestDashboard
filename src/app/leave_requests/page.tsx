@@ -1,9 +1,5 @@
-'use client';
-import { useGetData } from "@/hooks/useGetData";
-import TableDashboard from "../ui/dashboard/table/TableDashboard";
+import { LeaveRequest } from "@/components/leave_requests";
 
 export default function Page() {
-  const { data, loading, error } = useGetData();
-    
-  return <TableDashboard employees={data} loading={loading} />
+  return <LeaveRequest />
 }

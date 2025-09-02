@@ -1,18 +1,20 @@
 "use client";
 import React, { useState } from "react";
 import { TableRow, TableCell, Button, Dialog } from "@ui5/webcomponents-react";
+import { Avatar } from "@ui5/webcomponents-react";
 
-import { dateFormat } from "../../../../utils/helper";
+import { dateFormat, daysLeft } from "../../../../utils/helper";
 import { RowsProps } from "@/app/lib/definitions";
 import { IconBtn } from "./IconBtn";
 
-export default function BodyRow({
+function BodyRow({
   handleUpdateStatusEmployee,
   employees,
 }: RowsProps) {
-  const styleRejected = "bg-red-500 hover:bg-red-600";
-  const stylePending = "bg-yellow-500 hover:bg-yellow-600";
-  const styleApproved = "bg-green-500 hover:bg-green-600";
+  const styleRejected = "bg-red-100 hover:bg-red-100 text-red-800";
+  const stylePending = "bg-yellow-100 hover:bg-yellow-100 text-yellow-800";
+  const styleApproved = "bg-green-100 hover:bg-green-100 text-green-800";
+
   const style = (status: string) => {
     let styleButton = "";
     switch (status.toUpperCase()) {
@@ -47,19 +49,26 @@ export default function BodyRow({
   return employees.map((employee) => (
     <TableRow
       key={employee.id}
-      className="hover:bg-gray-100 transition-colors md:p-1.5 duration-200 grid grid-cols-6 p-5"
+      className="hover:bg-gray-100 transition-colors duration-200 grid grid-cols-7 px-4 py-0.5 border-b border-gray-200"
     >
-      <TableCell>
-        <span className="mx-auto">{employee.name}</span>
+      <TableCell className="flex items-center gap-1 px-0.5 py-1">
+        <Avatar size="XS" colorScheme="Accent10" />
+        <div className="leading-tight">
+          <p className="text-sm font-medium">{employee.name.length > 10 ? employee.name.substring(0,10) + '...' : employee.name}</p>
+          <span className="text-muted-foreground text-xs">Submitted {dateFormat(employee.createdAt)}</span>
+        </div>
       </TableCell>
       <TableCell>
-        <span className="mx-auto">{employee.type_of_leave}</span>
+        <p className="lowercase mx-auto py-0.5 px-2 border-1 border-gray-300 rounded-lg">{employee.type_of_leave}</p>
       </TableCell>
       <TableCell>
         <span className="mx-auto">{dateFormat(employee.date_from)}</span>
       </TableCell>
       <TableCell>
         <span className="mx-auto">{dateFormat(employee.date_to)}</span>
+      </TableCell>
+      <TableCell>
+        <span className="mx-auto">{daysLeft(employee.date_from, employee.date_to)} Days</span>
       </TableCell>
       <TableCell className="cell-dialog">
         <span
@@ -91,14 +100,20 @@ export default function BodyRow({
           }
           className={`${style(
             employee.status
-          )} mx-auto select-none text-white p-2 shrink-0 shadow-md`}
+          )} mx-auto select-none`}
         >
-          <>
+          <div className="flex justify-center items-center gap-1">
             <IconBtn status={employee.status} />
-            {employee.status.toUpperCase()}
-          </>
+            <span className="text-xs">
+            {employee.status.substring(0,1).toUpperCase()}{employee.status.substring(1).toLowerCase()}
+            </span>
+          </div>
         </Button>
       </TableCell>
     </TableRow>
   ));
+}
+
+export {
+  BodyRow
 }
