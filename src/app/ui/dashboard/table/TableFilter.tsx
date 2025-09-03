@@ -1,8 +1,8 @@
 "use client";
 import { HeaderRowProps } from "@/app/src/lib/definitions";
 import { Select, Option, Button } from "@ui5/webcomponents-react";
-import { useStore } from "../../../store/StoreContext";
-import TableFilterSkeleton from "../../Skeletons/TableFilterSkeleton";
+import { useStore } from "../../store/StoreContext";
+import TableFilterSkeleton from "../Skeletons/TableFilterSkeleton";
 
 export default function TableFilter ({
   handleStatus,
