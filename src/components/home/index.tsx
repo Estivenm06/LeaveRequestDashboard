@@ -35,7 +35,7 @@ const Home = () => {
         <h2 className="text-3xl font-bold text-foreground mb-2">
           Welcome back!
         </h2>
-        <p className="text-muted-foreground">
+        <p className="text-muted-foreground text-pretty">
           Here's what's happening with your team's leave requests today.
         </p>
       </div>

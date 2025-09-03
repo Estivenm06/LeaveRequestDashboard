@@ -1,8 +1,8 @@
-import TableDashboard from "@/app/ui/dashboard/table/TableDashboard"
+import Dashboard from "../../app/ui/dashboard/Dashboard"
 
 const LeaveRequest = () => {
     return (
-        <TableDashboard/>
+        <Dashboard/>
     )
 }
 

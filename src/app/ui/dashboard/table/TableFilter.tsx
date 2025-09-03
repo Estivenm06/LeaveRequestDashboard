@@ -8,7 +8,7 @@ const TableFilter = ({
 }: HeaderRowProps) => {
   return (
     <div className="mb-6">
-      <div className="py-10 px-5 shadow-md rounded-lg">
+      <div className="py-10 px-5 shadow-md rounded-lg bg-white">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="relative">
             <div className="leading-tight">

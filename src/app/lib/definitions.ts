@@ -14,6 +14,17 @@ export interface RowsProps {
   employees: Employee[];
 }
 
+export interface CardMobileProps {
+  handleUpdateStatusEmployee: ({ id }: { id: string }) => void;
+  employee: Employee;
+}
+
+export interface StatusBtnProps {
+  status: Employee["status"];
+  id: Employee["id"];
+  handleClick: ({id}: {id: string}) => void;
+}
+
 export interface HeaderRowProps {
   handleStatus: (status: string) => void;
   handleOrder: (order: boolean) => void;

@@ -5,30 +5,12 @@ import { Avatar } from "@ui5/webcomponents-react";
 
 import { dateFormat, daysLeft } from "../../../../utils/helper";
 import { RowsProps } from "@/app/lib/definitions";
-import { IconBtn } from "./IconBtn";
+import { StatusBtn } from "./StatusBtn";
 
 function BodyRow({
   handleUpdateStatusEmployee,
   employees,
 }: RowsProps) {
-  const styleRejected = "bg-red-100 hover:bg-red-100 text-red-800";
-  const stylePending = "bg-yellow-100 hover:bg-yellow-100 text-yellow-800";
-  const styleApproved = "bg-green-100 hover:bg-green-100 text-green-800";
-
-  const style = (status: string) => {
-    let styleButton = "";
-    switch (status.toUpperCase()) {
-      case "PENDING":
-        return (styleButton += stylePending);
-      case "APPROVED":
-        return (styleButton += styleApproved);
-      case "REJECTED":
-        return (styleButton += styleRejected);
-      default:
-        return styleButton;
-    }
-  };
-
   const [openDialogForEmployee, setOpenDialogForEmployee] = useState<{
     [id: string]: boolean;
   }>({});
@@ -93,22 +75,7 @@ function BodyRow({
         </Dialog>
       </TableCell>
       <TableCell>
-        <Button
-          onClick={() =>
-            employee.status.toLowerCase() !== "pending" &&
-            handleUpdateStatusEmployee({ id: employee.id })
-          }
-          className={`${style(
-            employee.status
-          )} mx-auto select-none`}
-        >
-          <div className="flex justify-center items-center gap-1">
-            <IconBtn status={employee.status} />
-            <span className="text-xs">
-            {employee.status.substring(0,1).toUpperCase()}{employee.status.substring(1).toLowerCase()}
-            </span>
-          </div>
-        </Button>
+        <StatusBtn id={employee.id} status={employee.status} handleClick={handleUpdateStatusEmployee} />
       </TableCell>
     </TableRow>
   ));

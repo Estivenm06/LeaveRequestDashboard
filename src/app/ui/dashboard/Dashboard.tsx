@@ -5,19 +5,21 @@ import { IllustratedMessage } from "@ui5/webcomponents-react";
 
 import { Employee } from "@/app/lib/definitions";
 
-import { TableFilter } from "./TableFilter";
-import { HeaderRow } from "./HeaderRow";
-import { BodyRow } from "./BodyRow";
-import { CardDashboard } from "../../components/CardDashboard";
-import { Pagination } from "./Pagination";
+import { TableFilter } from "./Table/TableFilter";
+import { HeaderRow } from "./Table/HeaderRow";
+import { BodyRow } from "./Table/BodyRow";
+import { CardDashboard } from "../components/CardDashboard";
+import { Pagination } from "./Pagination/Pagination";
 
-import { useStore } from "../../store/StoreContext";
+import { useStore } from "../store/StoreContext";
 
-import { SkeletonRow } from "./SkeletonRow";
-import { SkeletonHeader } from "./SkeletonHeader";
-import { PaginationSkeleton } from "./PaginationSkeleton";
+import { SkeletonRow } from "./Skeletons/SkeletonRow";
+import { SkeletonHeader } from "./Skeletons/SkeletonHeader";
+import { PaginationSkeleton } from "./Skeletons/PaginationSkeleton";
+import { CardMobile } from "./Card/CardMobile";
+import { CardMobileSkeleton } from "./Skeletons/CardMobileSkeleton";
 
-export default function TableDashboard() {
+export default function Dashboard() {
   const { data, loading } = useStore();
   const [employees, setEmployees] = useState<Employee[]>(data);
   const [statusFilter, setStatusFilter] = useState<string>("none");
@@ -96,7 +98,7 @@ export default function TableDashboard() {
   );
 
   return (
-    <main className="flex-1 p-6 bg-white">
+    <main className="flex-1 p-6">
       {/* Page Header */}
       <div className="flex items-center mb-8">
         <div>
@@ -108,6 +110,7 @@ export default function TableDashboard() {
           </p>
         </div>
       </div>
+      {/* Metric Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <CardDashboard
           title="Total Requests"
@@ -134,38 +137,61 @@ export default function TableDashboard() {
           number={rejected}
         />
       </div>
+      {/* Table Filter */}
       <TableFilter
         handleStatus={handleStatus}
         handleOrder={handleOrders}
         orderStart={orderStart}
       />
-      <Table
-        headerRow={loading ? <SkeletonHeader /> : <HeaderRow />}
-        className="shadow-md rounded-lg p-5"
-        overflowMode="Scroll"
-      >
-        {!loading && paginatedRowsData.length === 0 && <IllustratedMessage />}
-        {loading ? (
-          <>
-            {Array.from({ length: pageSize }).map((_, index) => (
-              <SkeletonRow key={index} />
-            ))}
-            <PaginationSkeleton />
-          </>
+      <div className="w-full overflow-x-auto sm:overflow-hidden shadow-md rounded-lg">
+        <Table
+          headerRow={loading ? <SkeletonHeader /> : <HeaderRow />}
+          className="sm:min-w-0 p-5 hidden lg:flex bg-white"
+          overflowMode="Scroll"
+        >
+          {!loading && paginatedRowsData.length === 0 && <IllustratedMessage />}
+          {loading ? (
+            <>
+              {Array.from({ length: pageSize }).map((_, index) => (
+                <SkeletonRow key={index} />
+              ))}
+              <PaginationSkeleton />
+            </>
+          ) : (
+            <>
+              <BodyRow
+                employees={paginatedRowsData}
+                handleUpdateStatusEmployee={handleUpdateStatusEmployee}
+              />
+              <Pagination
+                totalPages={totalPages}
+                handleClick={handleClick}
+                currentPage={page}
+              />
+            </>
+          )}
+        </Table>
+        {!loading && paginatedRowsData.length < 0 ? (
+          <div className="lg:hidden">
+            {Array.from({length: 2}, (_, index) => <CardMobileSkeleton key={index}/>)}
+          </div>
         ) : (
-          <>
-            <BodyRow
-              employees={paginatedRowsData}
-              handleUpdateStatusEmployee={handleUpdateStatusEmployee}
-            />
+          <div className="lg:hidden">
+            {paginatedRowsData.map((employee) => (
+              <CardMobile
+                key={employee.id}
+                employee={employee}
+                handleUpdateStatusEmployee={handleUpdateStatusEmployee}
+              />
+            ))}
             <Pagination
               totalPages={totalPages}
-              handleClick={handleClick}
               currentPage={page}
+              handleClick={handleClick}
             />
-          </>
+          </div>
         )}
-      </Table>
+      </div>
     </main>
   );
 }

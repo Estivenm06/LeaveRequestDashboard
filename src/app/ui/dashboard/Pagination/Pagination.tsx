@@ -9,7 +9,7 @@ function Pagination({
   handleClick,
 }: PaginationProps) {
   return (
-    <div className="flex flex-row justify-center items-center mt-4 mb-4 gap-2 md:gap-5">
+    <div className="flex flex-row justify-center items-center mt-4 gap-2 md:gap-5">
       {new Array(totalPages).fill("").map((_, index) => (
         <Button
           key={index}
