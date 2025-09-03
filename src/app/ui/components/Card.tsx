@@ -6,7 +6,7 @@ import "@ui5/webcomponents-icons/away.js";
 import "@ui5/webcomponents-icons/accept.js";
 import "@ui5/webcomponents-icons/group.js";
 
-import { MetricCardSkeleton } from "../dashboard/Skeletons/MetricCardSkeleton";
+import MetricCardSkeleton from "../dashboard/Skeletons/MetricCardSkeleton";
 import { useStore } from "../store/StoreContext";
 
 type Card = {
@@ -17,13 +17,19 @@ type Card = {
   borderColor: string;
 };
 
-const Card = ({ title, icon, number, content, borderColor }: Card) => {
+export default function Card({
+  title,
+  icon,
+  number,
+  content,
+  borderColor,
+}: Card) {
   const { loading } = useStore();
 
   if (loading) {
     return <MetricCardSkeleton borderColor={borderColor} />;
   }
-  
+
   return (
     <div
       className={`border-1 border-gray-300 border-l-4 bg-white px-5 py-10 rounded-lg shadow-md ${borderColor}`}
@@ -38,6 +44,4 @@ const Card = ({ title, icon, number, content, borderColor }: Card) => {
       </div>
     </div>
   );
-};
-
-export { Card };
+}

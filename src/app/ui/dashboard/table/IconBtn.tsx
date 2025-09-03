@@ -6,7 +6,7 @@ import "@ui5/webcomponents-icons/dist/message-error";
 import "@ui5/webcomponents-icons/dist/in-progress";
 import "@ui5/webcomponents-icons/dist/sys-enter";
 
-const IconBtn = ({ status }: { status: string }) => {
+export default function IconBtn ({ status }: { status: string }) {
   let styleIcon = "";
   let name = "";
   if(status === 'APPROVED'){
@@ -23,5 +23,3 @@ const IconBtn = ({ status }: { status: string }) => {
   }
   return <Icon name={name} className={`${styleIcon} w-3 h-3`} />
 };
-
-export { IconBtn };

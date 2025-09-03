@@ -1,7 +1,8 @@
 "use client";
-import { Card } from "@/app/ui/components/Card";
-import { useStore } from "@/app/ui/store/StoreContext";
 import { useMemo } from "react";
+
+import Card from "@/app/ui/components/Card";
+import { useStore } from "@/app/ui/store/StoreContext";
 
 const Home = () => {
   const { data } = useStore();

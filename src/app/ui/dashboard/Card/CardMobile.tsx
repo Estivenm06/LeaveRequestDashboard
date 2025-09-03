@@ -2,13 +2,13 @@ import { Avatar } from "@ui5/webcomponents-react";
 
 import { dateFormat, daysLeft } from "@/app/src/utils/helper";
 import type { CardMobileProps } from "@/app/src/lib/definitions";
-import { StatusBtn } from "../Table/StatusBtn";
+import StatusBtn from "../Table/StatusBtn";
 
-const CardMobile = ({
+export default function CardMobile({
   employee,
   handleUpdateStatusEmployee,
-}: CardMobileProps) => {
-  if(!employee) return null;
+}: CardMobileProps) {
+  if (!employee) return null;
 
   return (
     <div className="w-full bg-white rounded-lg shadow-md py-8 px-4 mb-4">
@@ -64,6 +64,4 @@ const CardMobile = ({
       </div>
     </div>
   );
-};
-
-export { CardMobile };
+}

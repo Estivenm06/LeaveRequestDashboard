@@ -1,6 +1,10 @@
-import { IconSkeleton } from "./IconSkeleton";
+import IconSkeleton from "./IconSkeleton";
 
-const CardDashboardSkeleton = ({ borderColor }: { borderColor: string }) => {
+export default function CardDashboardSkeleton({
+  borderColor,
+}: {
+  borderColor: string;
+}) {
   return (
     <div
       className={`border-1 border-gray-300 border-l-4 bg-gray-100 px-5 py-10 rounded-lg shadow-md ${borderColor} animate-pulse`}
@@ -14,6 +18,4 @@ const CardDashboardSkeleton = ({ borderColor }: { borderColor: string }) => {
       </div>
     </div>
   );
-};
-
-export { CardDashboardSkeleton };
+}

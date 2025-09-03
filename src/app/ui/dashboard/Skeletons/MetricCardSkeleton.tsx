@@ -1,6 +1,10 @@
-import { IconSkeleton } from "./IconSkeleton";
+import IconSkeleton from "./IconSkeleton";
 
-const MetricCardSkeleton = ({ borderColor }: { borderColor: string }) => {
+export default function MetricCardSkeleton({
+  borderColor,
+}: {
+  borderColor: string;
+}) {
   return (
     <div
       className={`border-1 border-gray-300 border-l-4 bg-gray-200 px-5 py-10 rounded-lg shadow-md animate-pulse ${borderColor}`}
@@ -15,6 +19,4 @@ const MetricCardSkeleton = ({ borderColor }: { borderColor: string }) => {
       </div>
     </div>
   );
-};
-
-export { MetricCardSkeleton };
+}

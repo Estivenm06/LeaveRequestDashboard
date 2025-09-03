@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "@ui5/webcomponents-react";
 import { PaginationProps } from "@/app/src/lib/definitions";
 
-function Pagination({
+export default function Pagination({
   totalPages,
   currentPage,
   handleClick,
@@ -25,8 +25,4 @@ function Pagination({
       ))}
     </div>
   );
-}
-
-export {
-  Pagination
 }

@@ -5,12 +5,12 @@ import { Avatar } from "@ui5/webcomponents-react";
 
 import { dateFormat, daysLeft } from "../../../src/utils/helper";
 import { RowsProps } from "@/app/src/lib/definitions";
-import { StatusBtn } from "./StatusBtn";
+import StatusBtn from "./StatusBtn";
 
-const BodyRow = ({
+export default function BodyRow ({
   handleUpdateStatusEmployee,
   employees,
-}: RowsProps) => {
+}: RowsProps) {
   const [openDialogForEmployee, setOpenDialogForEmployee] = useState<{
     [id: string]: boolean;
   }>({});
@@ -79,8 +79,4 @@ const BodyRow = ({
       </TableCell>
     </TableRow>
   ));
-}
-
-export {
-  BodyRow
 }

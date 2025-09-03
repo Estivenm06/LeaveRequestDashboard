@@ -7,14 +7,14 @@ import Link from "next/link";
 import { Icon } from "@ui5/webcomponents-react";
 import { usePathname } from "next/navigation";
 import { useStore } from "../store/StoreContext";
-import { IconSkeleton } from "../dashboard/Skeletons/IconSkeleton";
+import IconSkeleton from "../dashboard/Skeletons/IconSkeleton";
 
-const Sidebar = () => {
+export default function Sidebar() {
   const { loading } = useStore();
   const pathName = usePathname();
   const styleButtonDefault =
     "flex items-center p-2 rounded-sm transition-all duration-200 w-full justify-start text-sidebar-foreground text-sm";
-    
+
   return (
     // Sidebar
     <aside className="fixed top-16 bottom-0 left-0 w-50 md:w-64 border-r bg-sidebar md:bg-sidebar md:static transfrom transition-all duration-200 opacity-0 -translate-x-full md:opacity-100 md:translate-x-0 sidebar min-h-[calc(100vh-4rem)] z-100">
@@ -53,6 +53,4 @@ const Sidebar = () => {
       </nav>
     </aside>
   );
-};
-
-export { Sidebar };
+}

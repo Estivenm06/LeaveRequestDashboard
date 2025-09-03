@@ -1,7 +1,7 @@
 import React from "react";
 import { TableHeaderRow, TableHeaderCell } from "@ui5/webcomponents-react";
 
-const HeaderRow = () => {
+export default function HeaderRow () {
   return (
     <div >
       <div className="bg-white px-4 py-7">
@@ -39,5 +39,3 @@ const HeaderRow = () => {
     </div>
   );
 }
-
-export { HeaderRow };

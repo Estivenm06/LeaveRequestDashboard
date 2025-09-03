@@ -1,5 +1,5 @@
 
-const CardMobileSkeleton = () => {
+export default function CardMobileSkeleton () {
     const sk = "bg-gray-200 dark:bg-gray-700";
 
     return (
@@ -46,8 +46,4 @@ const CardMobileSkeleton = () => {
         </div>
       </div>
     );
-}
-
-export {
-    CardMobileSkeleton
 }

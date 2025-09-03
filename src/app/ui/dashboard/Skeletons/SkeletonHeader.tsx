@@ -1,7 +1,7 @@
 import React from "react";
 import { TableHeaderRow, TableHeaderCell } from "@ui5/webcomponents-react";
 
-function SkeletonHeader() {
+export default function SkeletonHeader() {
   return (
     <TableHeaderRow
       sticky
@@ -31,5 +31,3 @@ function SkeletonHeader() {
     </TableHeaderRow>
   );
 }
-
-export { SkeletonHeader };

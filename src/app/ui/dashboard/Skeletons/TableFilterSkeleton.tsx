@@ -1,4 +1,4 @@
-const TableFilterSkeleton = () => {
+export default function TableFilterSkeleton () {
   return (
     <div className="mb-6">
       <div className="py-10 px-5 shadow-md rounded-lg bg-gray-200 animate-pulse">
@@ -16,5 +16,3 @@ const TableFilterSkeleton = () => {
     </div>
   );
 };
-
-export { TableFilterSkeleton };

@@ -1,8 +1,8 @@
-import { IconBtn } from "./IconBtn";
+import IconBtn from "./IconBtn";
 
 import { StatusBtnProps } from "@/app/src/lib/definitions";
 
-const StatusBtn = ({ status, handleClick, id }: StatusBtnProps) => {
+export default function StatusBtn({ status, handleClick, id }: StatusBtnProps) {
   const styleRejected = "bg-red-100 hover:bg-red-100 text-red-800";
   const stylePending = "bg-yellow-100 hover:bg-yellow-100 text-yellow-800";
   const styleApproved = "bg-green-100 hover:bg-green-100 text-green-800";
@@ -35,8 +35,4 @@ const StatusBtn = ({ status, handleClick, id }: StatusBtnProps) => {
       </div>
     </button>
   );
-};
-
-export {
-    StatusBtn
 }

@@ -6,7 +6,7 @@ import "@ui5/webcomponents-icons/away.js";
 import "@ui5/webcomponents-icons/accept.js";
 import "@ui5/webcomponents-icons/decline.js";
 import { useStore } from "../store/StoreContext";
-import { CardDashboardSkeleton } from "../dashboard/Skeletons/CardDashboardSkeleton";
+import CardDashboardSkeleton from "../dashboard/Skeletons/CardDashboardSkeleton";
 
 type CardDashboardProps = {
   title: string;
@@ -15,12 +15,12 @@ type CardDashboardProps = {
   borderColor: string;
 };
 
-const CardDashboard = ({
+export default function CardDashboard({
   title,
   icon,
   number,
   borderColor,
-}: CardDashboardProps) => {
+}: CardDashboardProps) {
   const { loading } = useStore();
   if (loading) {
     return <CardDashboardSkeleton borderColor={borderColor} />;
@@ -39,6 +39,4 @@ const CardDashboard = ({
       </div>
     </div>
   );
-};
-
-export { CardDashboard };
+}

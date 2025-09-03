@@ -4,8 +4,8 @@ import { StoreProvider } from "./ui/store/StoreContext";
 
 import "./globals.css";
 import { inter } from "./ui/fonts";
-import { Sidebar } from "@/app/ui/common/Sidebar";
-import { Header } from "@/app/ui/common/Header";
+import Sidebar from "@/app/ui/common/Sidebar";
+import Header from "@/app/ui/common/Header";
 
 export const metadata = {
   title: "Leave Request Dashboard",

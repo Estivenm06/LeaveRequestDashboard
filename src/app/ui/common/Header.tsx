@@ -1,14 +1,14 @@
 "use client";
 import Link from "next/link";
 
-const Header = () => {
+export default function Header() {
   const sidebarHandler = () => {
     const sidebar = document.querySelector(".sidebar");
     if (sidebar) {
       if (sidebar.classList.contains("opacity-0")) {
         sidebar.classList.remove("-translate-x-full", "opacity-0");
         sidebar.classList.add("translate-x-0", "opacity-100");
-    } else {
+      } else {
         sidebar.classList.remove("translate-x-0", "opacity-100");
         sidebar.classList.add("-translate-x-full", "opacity-0");
       }
@@ -37,6 +37,4 @@ const Header = () => {
       </div>
     </header>
   );
-};
-
-export { Header };
+}

@@ -1,11 +1,7 @@
-import Dashboard from "../../../ui/dashboard/Dashboard"
+import Dashboard from "@/app/ui/dashboard/Dashboard";
 
 const LeaveRequest = () => {
-    return (
-        <Dashboard/>
-    )
-}
+  return <Dashboard />;
+};
 
-export {
-    LeaveRequest
-}
+export { LeaveRequest };
