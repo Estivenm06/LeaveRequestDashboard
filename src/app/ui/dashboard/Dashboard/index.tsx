@@ -6,7 +6,7 @@ import { IllustratedMessage } from "@ui5/webcomponents-react";
 import { Employee } from "@/app/src/lib/definitions";
 
 // Dashboard Components
-import { HeaderRow, BodyRow, TableFilter } from "../Table";
+import { HeaderRow, BodyRow, TableFilter } from "@/app/ui/dashboard/Table";
 import CardDashboard from "@/app/ui/components/CardDashboard";
 import Pagination from "../Pagination";
 
