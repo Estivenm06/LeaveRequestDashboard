@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { TableRow, TableCell, Button, Dialog } from "@ui5/webcomponents-react";
 import { Avatar } from "@ui5/webcomponents-react";
 
-import { dateFormat, daysLeft } from "../../../src/utils/helper";
+import { dateFormat, daysLeft } from "@/app/src/utils/helper";
 import { RowsProps } from "@/app/src/lib/definitions";
 import StatusBtn from "@/app/ui/dashboard/Table/StatusBtn";
 

@@ -6,9 +6,9 @@ import { IllustratedMessage } from "@ui5/webcomponents-react";
 import { Employee } from "@/app/src/lib/definitions";
 
 // Dashboard Components
-import HeaderRow from '@/app/ui/dashboard/Table/HeaderRow';
-import BodyRow from '@/app/ui/dashboard/Table/BodyRow';
-import TableFilter from '@/app/ui/dashboard/Table/TableFilter';
+import HeaderRow from "@/app/ui/dashboard/Table/HeaderRow";
+import BodyRow from "../Table/BodyRow";
+import TableFilter from "../Table/TableFilter";
 import CardDashboard from "@/app/ui/components/CardDashboard";
 import Pagination from "../Pagination";
 
