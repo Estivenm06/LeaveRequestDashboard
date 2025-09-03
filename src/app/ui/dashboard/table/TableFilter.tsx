@@ -2,9 +2,9 @@
 import { HeaderRowProps } from "@/app/src/lib/definitions";
 import { Select, Option, Button } from "@ui5/webcomponents-react";
 import { useStore } from "../../store/StoreContext";
-import TableFilterSkeleton from "../Skeletons/TableFilterSkeleton";
+import { TableFilterSkeleton } from "../Skeletons";
 
-export default function TableFilter ({
+export default function TableFilter({
   handleStatus,
   handleOrder,
   orderStart,
@@ -59,4 +59,4 @@ export default function TableFilter ({
       </div>
     </div>
   );
-};
+}

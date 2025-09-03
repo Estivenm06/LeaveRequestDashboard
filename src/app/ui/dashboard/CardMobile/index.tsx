@@ -2,7 +2,7 @@ import { Avatar } from "@ui5/webcomponents-react";
 
 import { dateFormat, daysLeft } from "@/app/src/utils/helper";
 import type { CardMobileProps } from "@/app/src/lib/definitions";
-import StatusBtn from "@/app/ui/dashboard/table/StatusBtn";
+import { StatusBtn } from "../Table";
 
 export default function CardMobile({
   employee,

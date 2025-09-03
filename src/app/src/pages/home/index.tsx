@@ -17,14 +17,14 @@ const Home = () => {
     { approved: 0, pending: 0 }
   );
 
-  let availabilty = Math.round((approved / total) * 100);
+  const availabilty = Math.round((approved / total) * 100);
   const stats = useMemo(
     () => ({
       approved,
       pending,
       availabilty,
     }),
-    [approved, pending, availabilty, total]
+    [ approved, pending, availabilty ]
   );
 
   return (
@@ -36,7 +36,7 @@ const Home = () => {
           Welcome back!
         </h2>
         <p className="text-muted-foreground text-pretty">
-          Here's what's happening with your team's leave requests today.
+          Here&apos;s what&apos;s happening with your team&apos;s leave requests today.
         </p>
       </div>
       {/* Metrics Cards */}
@@ -51,21 +51,21 @@ const Home = () => {
         <Card
           title="Pending Approval"
           icon="away"
-          number={pending}
+          number={stats.pending}
           borderColor="border-l-chart-2"
           content="Requires your attention"
         />
         <Card
           title="Approved"
           icon="accept"
-          number={approved}
+          number={stats.approved}
           borderColor="border-l-chart-3"
           content=""
         />
         <Card
           title="Team Availability"
           icon="group"
-          number={`${availabilty}%`}
+          number={`${stats.approved}%`}
           borderColor="border-l-chart-4"
           content="Current team capacity"
         />

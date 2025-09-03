@@ -6,17 +6,17 @@ import { IllustratedMessage } from "@ui5/webcomponents-react";
 import { Employee } from "@/app/src/lib/definitions";
 
 // Dashboard Components
-import { HeaderRow, BodyRow, TableFilter } from '../Table'
+import { HeaderRow, BodyRow, TableFilter } from "../Table";
 import CardDashboard from "@/app/ui/components/CardDashboard";
 import Pagination from "../Pagination";
 
 import { useStore } from "../../store/StoreContext";
 
 // Skeletons Components
-import SkeletonHeader from "../Skeletons/SkeletonHeader";
-import PaginationSkeleton from "../Skeletons/PaginationSkeleton";
+import { SkeletonHeader } from "../Skeletons";
+import { PaginationSkeleton } from "../Skeletons";
 import CardMobile from "../CardMobile";
-import CardMobileSkeleton from "../Skeletons/CardMobileSkeleton";
+import { CardMobileSkeleton } from "../Skeletons";
 
 export default function Dashboard() {
   const { data, loading } = useStore();
@@ -68,7 +68,7 @@ export default function Dashboard() {
       return true;
     };
 
-    let filtered = employees.filter(statusCondition);
+    const filtered = employees.filter(statusCondition);
     const ordered = filtered.sort((a, b) => {
       return orderStart
         ? new Date(a.date_from).getTime() - new Date(b.date_from).getTime()
@@ -83,7 +83,7 @@ export default function Dashboard() {
 
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
-  let paginatedRowsData = rowsData.slice(startIndex, endIndex);
+  const paginatedRowsData = rowsData.slice(startIndex, endIndex);
 
   const total = paginatedRowsData.length;
   const { approved, pending, rejected } = paginatedRowsData.reduce(

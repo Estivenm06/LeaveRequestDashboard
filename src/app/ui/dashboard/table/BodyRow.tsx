@@ -5,9 +5,9 @@ import { Avatar } from "@ui5/webcomponents-react";
 
 import { dateFormat, daysLeft } from "@/app/src/utils/helper";
 import { RowsProps } from "@/app/src/lib/definitions";
-import StatusBtn from "@/app/ui/dashboard/Table/StatusBtn";
+import { StatusBtn } from "./index";
 
-export default function BodyRow ({
+export default function BodyRow({
   handleUpdateStatusEmployee,
   employees,
 }: RowsProps) {
@@ -36,12 +36,20 @@ export default function BodyRow ({
       <TableCell className="flex items-center gap-1 px-0.5 py-1">
         <Avatar size="XS" colorScheme="Accent10" />
         <div className="leading-tight">
-          <p className="text-sm font-medium">{employee.name.length > 10 ? employee.name.substring(0,10) + '...' : employee.name}</p>
-          <span className="text-muted-foreground text-xs">Submitted {dateFormat(employee.createdAt)}</span>
+          <p className="text-sm font-medium">
+            {employee.name.length > 10
+              ? employee.name.substring(0, 10) + "..."
+              : employee.name}
+          </p>
+          <span className="text-muted-foreground text-xs">
+            Submitted {dateFormat(employee.createdAt)}
+          </span>
         </div>
       </TableCell>
       <TableCell>
-        <p className="lowercase mx-auto py-0.5 px-2 border-1 border-gray-300 rounded-lg">{employee.type_of_leave}</p>
+        <p className="lowercase mx-auto py-0.5 px-2 border-1 border-gray-300 rounded-lg">
+          {employee.type_of_leave}
+        </p>
       </TableCell>
       <TableCell>
         <span className="mx-auto">{dateFormat(employee.date_from)}</span>
@@ -50,7 +58,9 @@ export default function BodyRow ({
         <span className="mx-auto">{dateFormat(employee.date_to)}</span>
       </TableCell>
       <TableCell>
-        <span className="mx-auto">{daysLeft(employee.date_from, employee.date_to)} Days</span>
+        <span className="mx-auto">
+          {daysLeft(employee.date_from, employee.date_to)} Days
+        </span>
       </TableCell>
       <TableCell className="cell-dialog">
         <span
@@ -75,7 +85,11 @@ export default function BodyRow ({
         </Dialog>
       </TableCell>
       <TableCell>
-        <StatusBtn id={employee.id} status={employee.status} handleClick={handleUpdateStatusEmployee} />
+        <StatusBtn
+          id={employee.id}
+          status={employee.status}
+          handleClick={handleUpdateStatusEmployee}
+        />
       </TableCell>
     </TableRow>
   ));

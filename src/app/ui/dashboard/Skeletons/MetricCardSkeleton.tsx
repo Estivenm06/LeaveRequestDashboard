@@ -1,4 +1,4 @@
-import IconSkeleton from "@/app/ui/dashboard/Skeletons/IconSkeleton";
+import { IconSkeleton } from "./index";
 
 export default function MetricCardSkeleton({
   borderColor,
