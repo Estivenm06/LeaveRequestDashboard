@@ -1,4 +1,4 @@
-import IconBtn from "./IconBtn";
+import IconBtn from "@/app/ui/dashboard/Table/IconBtn";
 
 import { StatusBtnProps } from "@/app/src/lib/definitions";
 

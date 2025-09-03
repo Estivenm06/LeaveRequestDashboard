@@ -6,18 +6,18 @@ import { IllustratedMessage } from "@ui5/webcomponents-react";
 import { Employee } from "@/app/src/lib/definitions";
 
 // Dashboard Components
-import TableFilter from "./Table/TableFilter";
-import HeaderRow from "./Table/HeaderRow";
-import BodyRow from "./Table/BodyRow";
-import CardDashboard from "../components/CardDashboard";
-import Pagination from "./Pagination/Pagination";
+import TableFilter from "@/app/ui/dashboard/Table/TableFilter";
+import HeaderRow from "@/app/ui/dashboard/Table/HeaderRow";
+import BodyRow from "@/app/ui/dashboard/Table/BodyRow";
+import CardDashboard from "@/app/ui/components/CardDashboard";
+import Pagination from "./Pagination";
 
 import { useStore } from "../store/StoreContext";
 
 // Skeletons Components
 import SkeletonHeader from "./Skeletons/SkeletonHeader";
 import PaginationSkeleton from "./Skeletons/PaginationSkeleton";
-import CardMobile from "./Card/CardMobile";
+import CardMobile from "./CardMobile";
 import CardMobileSkeleton from "./Skeletons/CardMobileSkeleton";
 
 export default function Dashboard() {

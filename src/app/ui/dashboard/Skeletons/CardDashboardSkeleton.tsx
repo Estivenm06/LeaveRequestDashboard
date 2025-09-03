@@ -1,4 +1,4 @@
-import IconSkeleton from "./IconSkeleton";
+import IconSkeleton from "@/app/ui/dashboard/Skeletons/IconSkeleton";
 
 export default function CardDashboardSkeleton({
   borderColor,

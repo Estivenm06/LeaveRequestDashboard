@@ -5,7 +5,7 @@ import { Avatar } from "@ui5/webcomponents-react";
 
 import { dateFormat, daysLeft } from "../../../src/utils/helper";
 import { RowsProps } from "@/app/src/lib/definitions";
-import StatusBtn from "./StatusBtn";
+import StatusBtn from "@/app/ui/dashboard/Table/StatusBtn";
 
 export default function BodyRow ({
   handleUpdateStatusEmployee,
