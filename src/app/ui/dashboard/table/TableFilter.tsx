@@ -1,11 +1,16 @@
-import { HeaderRowProps } from "@/app/lib/definitions";
+"use client";
+import { HeaderRowProps } from "@/app/src/lib/definitions";
 import { Select, Option, Button } from "@ui5/webcomponents-react";
+import { useStore } from "../../store/StoreContext";
+import { TableFilterSkeleton } from "../Skeletons/TableFilterSkeleton";
 
 const TableFilter = ({
   handleStatus,
   handleOrder,
   orderStart,
 }: HeaderRowProps) => {
+  const { loading } = useStore();
+  if (loading) return <TableFilterSkeleton />;
   return (
     <div className="mb-6">
       <div className="py-10 px-5 shadow-md rounded-lg bg-white">

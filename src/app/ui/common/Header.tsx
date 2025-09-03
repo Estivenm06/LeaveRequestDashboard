@@ -16,11 +16,11 @@ const Header = () => {
   };
   return (
     // Header
-    <header className="sticky top-0 z-50 w-full border-b-primary bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
+    <header className="sticky top-0 w-full border-b-primary bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60 z-10000">
       <div className="container flex h-16 items-center px-6">
         <div className="flex items-center space-x-2">
           <button
-            className="space-y-1 group transition-all duration-200 cursor-pointer block lg:hidden"
+            className="space-y-1 group transition-all duration-200 cursor-pointer block md:hidden"
             onClick={sidebarHandler}
           >
             <div className="w-4 h-0.5 bg-gray-500 rounded-full transition-all duration-200"></div>

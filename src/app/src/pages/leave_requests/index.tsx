@@ -1,4 +1,4 @@
-import Dashboard from "../../app/ui/dashboard/Dashboard"
+import Dashboard from "../../../ui/dashboard/Dashboard"
 
 const LeaveRequest = () => {
     return (

@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import { TableRow, TableCell, Button, Dialog } from "@ui5/webcomponents-react";
 import { Avatar } from "@ui5/webcomponents-react";
 
-import { dateFormat, daysLeft } from "../../../../utils/helper";
-import { RowsProps } from "@/app/lib/definitions";
+import { dateFormat, daysLeft } from "../../../src/utils/helper";
+import { RowsProps } from "@/app/src/lib/definitions";
 import { StatusBtn } from "./StatusBtn";
 
-function BodyRow({
+const BodyRow = ({
   handleUpdateStatusEmployee,
   employees,
-}: RowsProps) {
+}: RowsProps) => {
   const [openDialogForEmployee, setOpenDialogForEmployee] = useState<{
     [id: string]: boolean;
   }>({});

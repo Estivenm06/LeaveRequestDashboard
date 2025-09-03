@@ -1,9 +1,9 @@
 import React from "react";
 import { TableHeaderRow, TableHeaderCell } from "@ui5/webcomponents-react";
 
-function HeaderRow() {
+const HeaderRow = () => {
   return (
-    <div>
+    <div >
       <div className="bg-white px-4 py-7">
         <h1 className="text-lg font-bold">All Leave Requests</h1>
         <span className="text-muted-foreground">

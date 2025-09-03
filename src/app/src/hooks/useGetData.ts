@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import { DATABASE_URL } from "@/utils/config";
-import { Employee } from "@/app/lib/definitions";
+import { DATABASE_URL } from "@/app/src/utils/config";
+import { Employee } from "@/app/src/lib/definitions";
 
 const useGetData = () => {
   const [data, setData] = useState<Employee[]>([]);

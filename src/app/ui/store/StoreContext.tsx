@@ -1,8 +1,8 @@
 'use client';
 import React, { createContext, useContext, ReactNode, useMemo } from "react";
 
-import type { Employee } from "@/app/lib/definitions";
-import { useGetData } from "@/hooks/useGetData";
+import type { Employee } from "@/app/src/lib/definitions";
+import { useGetData } from "@/app/src/hooks/useGetData";
 
 type StoreContextType = {
     data: Employee[];

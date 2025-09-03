@@ -1,6 +1,6 @@
 import { IconBtn } from "./IconBtn";
 
-import { StatusBtnProps } from "@/app/lib/definitions";
+import { StatusBtnProps } from "@/app/src/lib/definitions";
 
 const StatusBtn = ({ status, handleClick, id }: StatusBtnProps) => {
   const styleRejected = "bg-red-100 hover:bg-red-100 text-red-800";

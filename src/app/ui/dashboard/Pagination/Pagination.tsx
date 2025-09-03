@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "@ui5/webcomponents-react";
-import { PaginationProps } from "@/app/lib/definitions";
+import { PaginationProps } from "@/app/src/lib/definitions";
 
 function Pagination({
   totalPages,

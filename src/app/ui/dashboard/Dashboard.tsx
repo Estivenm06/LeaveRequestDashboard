@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Table } from "@ui5/webcomponents-react";
 import { IllustratedMessage } from "@ui5/webcomponents-react";
 
-import { Employee } from "@/app/lib/definitions";
+import { Employee } from "@/app/src/lib/definitions";
 
+// Dashboard Components
 import { TableFilter } from "./Table/TableFilter";
 import { HeaderRow } from "./Table/HeaderRow";
 import { BodyRow } from "./Table/BodyRow";
@@ -13,7 +14,7 @@ import { Pagination } from "./Pagination/Pagination";
 
 import { useStore } from "../store/StoreContext";
 
-import { SkeletonRow } from "./Skeletons/SkeletonRow";
+// Skeletons Components
 import { SkeletonHeader } from "./Skeletons/SkeletonHeader";
 import { PaginationSkeleton } from "./Skeletons/PaginationSkeleton";
 import { CardMobile } from "./Card/CardMobile";
@@ -111,7 +112,7 @@ export default function Dashboard() {
         </div>
       </div>
       {/* Metric Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
         <CardDashboard
           title="Total Requests"
           borderColor="border-l-chart-1"
@@ -143,55 +144,51 @@ export default function Dashboard() {
         handleOrder={handleOrders}
         orderStart={orderStart}
       />
-      <div className="w-full overflow-x-auto sm:overflow-hidden shadow-md rounded-lg">
+      {loading ? (
         <Table
-          headerRow={loading ? <SkeletonHeader /> : <HeaderRow />}
-          className="sm:min-w-0 p-5 hidden lg:flex bg-white"
+          headerRow={<SkeletonHeader />}
           overflowMode="Scroll"
+          className="sm:min-w-0 p-5 hidden lg:flex bg-white rounded-lg"
+        />
+      ) : (
+        <Table
+          headerRow={<HeaderRow />}
+          overflowMode="Scroll"
+          className="sm:min-w-0 p-5 hidden lg:flex bg-white rounded-lg"
         >
-          {!loading && paginatedRowsData.length === 0 && <IllustratedMessage />}
-          {loading ? (
-            <>
-              {Array.from({ length: pageSize }).map((_, index) => (
-                <SkeletonRow key={index} />
-              ))}
-              <PaginationSkeleton />
-            </>
-          ) : (
-            <>
-              <BodyRow
-                employees={paginatedRowsData}
-                handleUpdateStatusEmployee={handleUpdateStatusEmployee}
-              />
-              <Pagination
-                totalPages={totalPages}
-                handleClick={handleClick}
-                currentPage={page}
-              />
-            </>
-          )}
+          <BodyRow
+            employees={paginatedRowsData}
+            handleUpdateStatusEmployee={handleUpdateStatusEmployee}
+          />
         </Table>
-        {!loading && paginatedRowsData.length < 0 ? (
-          <div className="lg:hidden">
-            {Array.from({length: 2}, (_, index) => <CardMobileSkeleton key={index}/>)}
-          </div>
-        ) : (
-          <div className="lg:hidden">
-            {paginatedRowsData.map((employee) => (
-              <CardMobile
-                key={employee.id}
-                employee={employee}
-                handleUpdateStatusEmployee={handleUpdateStatusEmployee}
-              />
-            ))}
-            <Pagination
-              totalPages={totalPages}
-              currentPage={page}
-              handleClick={handleClick}
+      )}
+      {loading ? (
+        <div className="lg:hidden">
+          {Array.from({ length: 2 }, (_, index) => (
+            <CardMobileSkeleton key={index} />
+          ))}
+        </div>
+      ) : (
+        <div className="lg:hidden">
+          {paginatedRowsData.map((employee) => (
+            <CardMobile
+              key={employee.id}
+              employee={employee}
+              handleUpdateStatusEmployee={handleUpdateStatusEmployee}
             />
-          </div>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
+      {!loading && paginatedRowsData.length === 0 && <IllustratedMessage />}
+      {loading ? (
+        <PaginationSkeleton />
+      ) : (
+        <Pagination
+          totalPages={totalPages}
+          currentPage={page}
+          handleClick={handleClick}
+        />
+      )}
     </main>
   );
 }

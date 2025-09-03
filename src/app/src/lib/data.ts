@@ -1,4 +1,4 @@
-import { DATABASE_URL } from "@/utils/config";
+import { DATABASE_URL } from "@/app/src/utils/config";
 import { Employee } from "./definitions";
 
 const databaseURL: string = DATABASE_URL();

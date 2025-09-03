@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@ui5/webcomponents-react";
+
 import { StoreProvider } from "./ui/store/StoreContext";
 
 import "./globals.css";
@@ -17,20 +18,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ThemeProvider>
-    <StoreProvider>
-      <html lang="en">
-        <body
-          className={`${inter.className} items-center min-h-screen bg-background`}
-        >
-          <Header />
-          <div className="flex">
-            <Sidebar />
-            {children}
-          </div>
-        </body>
-      </html>
-    </StoreProvider>
-    </ThemeProvider>
+    <html lang="en">
+      <ThemeProvider>
+        <StoreProvider>
+          <body
+            className={`${inter.className} items-center min-h-screen bg-background`}
+          >
+            <Header />
+            <div className="flex">
+              <Sidebar />
+              {children}
+            </div>
+          </body>
+        </StoreProvider>
+      </ThemeProvider>
+    </html>
   );
 }

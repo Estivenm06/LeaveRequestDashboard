@@ -25,7 +25,6 @@ const Home = () => {
     }),
     [approved, pending, availabilty, total]
   );
-  console.log(stats);
 
   return (
     // Main Content

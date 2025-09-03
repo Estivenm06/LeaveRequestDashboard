@@ -7,7 +7,7 @@ function PaginationSkeleton(){
       {new Array(4).fill("").map((_, index) => (
     <div
       key={index}
-      className={`px-8 py-3 rounded-md shadow-md animate-pulse bg-gray-200`}
+      className={`px-8 py-3 rounded-md shadow-md animate-pulse bg-gray-500`}
     >
     </div>
   ))}
